@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Main Colors-->
+    <color name="colorPrimary">#BB1717</color>
+    <color name="colorPrimaryDark">#9D110F</color>
+    <color name="colorAccent">#fddb02</color>
+
+    <!--Secondary Colors-->
+    <color name="text_color">#535a5a</color>
+    <color name="hint_color"> #5e6b72</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_gray">#e0e0e0</color>
+    <color name="opacity_light_gray">#55e0e0e0</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="light_gray_f2">#f2f2f2</color>
+    <color name="light_gray_fa">#fafafa</color>
+    <color name="line">#5e6b72</color>
+    <color name="green">#00b200</color>
+    <color name="dark_green">#1fa049</color>
+    <color name="dark_gray_alpha">#AA999999</color>
+    <color name="black_line">#2d2c2c</color>
+    <color name="dark_gray">#999999</color>
+    <color name="yellow">#fddb02</color>
+    <color name="dark_red">#ce0e2d</color>
+    <color name="dark_blue">#35459c</color>
+    <color name="dark_yellow">#e4af23</color>
+    <color name="gray_black">#606161</color>
+    <color name="white_opacity">#EEFFFFFF</color>
+    <color name="d2_gray">#D2D2D2</color>
+
+    <!--Wimo Colors-->
+    <color name="seamlab_gray">#D8D8D8</color>
+    <color name="seamlab_dark_gray">#9B9B9B</color>
+    <color name="seamlab_theme">#BB1717</color>
+    <color name="seamlab_theme_alpha">#99BB1717</color>
+
+    <color name="seamlab_gray_f5">#F5F5F5</color>
+</resources>

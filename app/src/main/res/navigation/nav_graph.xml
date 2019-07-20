@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/newsFragment">
+    <fragment android:id="@+id/newsFragment"
+              android:name="com.sayed.newsapp.ui.home.NewsFragment"
+              android:label="NewsFragment"
+              tools:layout="@layout/fragment_news">
+        <action android:id="@+id/action_newsFragment_to_detailFragment"
+                app:destination="@id/detailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:launchSingleTop="false"
+                app:popUpToInclusive="false"
+                />
+    </fragment>
+    <fragment android:id="@+id/detailsFragment"
+              android:name="com.sayed.newsapp.ui.home.NewsDetailFragment"
+              android:label="DetailsFragment"
+              tools:layout="@layout/fragment_news_detail">
+        <argument android:name="newsArgs"
+                  app:argType="com.sayed.newsapp.model.News"
+                  android:defaultValue="@null"
+                  app:nullable="true"/>
+    </fragment>
+</navigation>
