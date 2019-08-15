@@ -16,9 +16,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.navigation.ActionOnlyNavDirections
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.sayed.newsapp.R
 import com.sayed.newsapp.api.AppResource
@@ -28,7 +25,6 @@ import com.sayed.newsapp.managers.BroadcastManager
 import com.sayed.newsapp.model.News
 import com.sayed.newsapp.model.NewsResult
 import com.sayed.newsapp.ui.base.BaseFragment
-import com.sayed.newsapp.ui.base.BaseViewModel
 import com.sayed.newsapp.utils.AppUtils
 import com.sayed.newsapp.utils.SPUtils
 import com.sayed.newsapp.view_model.NewsViewModel
@@ -94,6 +90,7 @@ class NewsFragment : BaseFragment(), Injectable{
 
     //init data
     private fun initData() {
+        setSwipeRefreshColors(binding.swipeRefresh) //change swipr refresh icon color
        setAdapter() //Bind adapter with recycler
 
        if (AppUtils.isNetworkAvailable(this.activity!!))pullNews() //call view model to get data
@@ -105,7 +102,7 @@ class NewsFragment : BaseFragment(), Injectable{
     //set adapter
     private fun setAdapter(){
         adapterNews= AdapterNews(items,itemCallBack)
-        binding.recyclerView.layoutManager=GridLayoutManager(activity,2)
+        binding.recyclerView.layoutManager=GridLayoutManager(this.activity,2)
         binding.recyclerView.adapter=adapterNews
         adapterNews.notifyDataSetChanged()
     }
@@ -117,7 +114,7 @@ class NewsFragment : BaseFragment(), Injectable{
 
     //go to description
     fun goToDescription(news: News){
-        val action = NewsFragmentDirections.actionNewsFragmentToDetailFragment()
+        val action = HomeFragmentDirections.actionNewsFragmentToDetailFragment()
         action.newsArgs=news
 
         NavHostFragment.findNavController(this).navigate(action)
@@ -150,7 +147,7 @@ class NewsFragment : BaseFragment(), Injectable{
     //Search News
     private fun searchItems(newsChar: String) {
 
-        GlobalScope.launch(Dispatchers.Default){// as it heavy operation on cpu  --> Croutine
+        GlobalScope.launch(Dispatchers.Default){// as it heavy operation on cpu  --> Coroutines
             items.clear()
             for (news in tempItems){
 

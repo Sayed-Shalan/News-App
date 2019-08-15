@@ -1,6 +1,5 @@
 package com.sayed.newsapp.api
-
-public class AppResource<T>(var status: Int, var data: T?, var error: String?) {
+ class AppResource<T>(var status: Int, var data: T?, var error: String?) {
 
     //Static Data
     companion object{
@@ -8,16 +7,16 @@ public class AppResource<T>(var status: Int, var data: T?, var error: String?) {
         private val STATUS_SUCCESS = 2
         private val STATUS_ERROR = 3
 
-        public fun <T> success(data: T?): AppResource<T> {
+        fun <T> success(data: T?): AppResource<T> {
             return AppResource(STATUS_SUCCESS, data, null)
         }
 
-        public fun <T> error(data: T?, error: String): AppResource<T> {
+        fun <T> error(data: T?, error: String): AppResource<T> {
             return AppResource(STATUS_ERROR, data, error)
         }
 
 
-        public fun <T> loading(data: T?): AppResource<T> {
+        fun <T> loading(data: T?): AppResource<T> {
             return AppResource(STATUS_LOADING, data, null)
         }
     }
@@ -31,6 +30,9 @@ public class AppResource<T>(var status: Int, var data: T?, var error: String?) {
                 '}'.toString()
     }
 
+     /**
+      * Equals and hash code
+      */
     override fun equals(o: Any?): Boolean {
         if (this === o) return true
         if (o == null || javaClass != o.javaClass) return false
@@ -49,15 +51,18 @@ public class AppResource<T>(var status: Int, var data: T?, var error: String?) {
         return result
     }
 
-    public fun isLoading(): Boolean {
-        return status == STATUS_LOADING
-    }
+     /**
+      * Check view Status ***********
+      */
+     fun isLoading(): Boolean {
+         return status == STATUS_LOADING
+     }
 
-    public fun isSuccessfully(): Boolean {
-        return status == STATUS_SUCCESS
-    }
+     fun isSuccessfully(): Boolean {
+         return status == STATUS_SUCCESS
+     }
 
-    public fun isError(): Boolean {
-        return status == STATUS_ERROR
-    }
+     fun isError(): Boolean {
+         return status == STATUS_ERROR
+     }
 }

@@ -20,8 +20,12 @@ import android.view.Gravity
 import android.view.Menu
 import android.widget.SearchView
 import android.widget.TextView
+import com.facebook.AccessToken
 import com.sayed.newsapp.managers.BroadcastManager
-
+import com.sayed.newsapp.other.OkCancelCallback
+import com.sayed.newsapp.utils.AppUtils
+import com.sayed.newsapp.utils.SPUtils
+import javax.inject.Inject
 
 
 class MainActivity : HasSupportFragmentInjectorActivity(), NavController.OnDestinationChangedListener {
@@ -30,6 +34,9 @@ class MainActivity : HasSupportFragmentInjectorActivity(), NavController.OnDesti
     lateinit var binding: ActivityMainBinding
     lateinit var navController : NavController
     lateinit var toggle: ActionBarDrawerToggle
+
+    @Inject
+    lateinit var spUtil: SPUtils
 
 
     /**
@@ -65,7 +72,7 @@ class MainActivity : HasSupportFragmentInjectorActivity(), NavController.OnDesti
 
     //On Nav host destination changed
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
-//        binding.appBar.visibility=if(destination.id==R.id.detailsFragment) View.GONE else View.VISIBLE //change visibility
+        binding.appBar.visibility=if(destination.id==R.id.loginFragment) View.GONE else View.VISIBLE // hide/show app bar aligned with login fragment
     }
 
     /**
@@ -105,8 +112,26 @@ class MainActivity : HasSupportFragmentInjectorActivity(), NavController.OnDesti
      */
     var onNavigation= object : NavigationView.OnNavigationItemSelectedListener{
         override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
             binding.drawerLayout.closeDrawer(Gravity.START)
             item.isChecked = false
+            if (item.itemId==R.id.action_logout){
+
+                AppUtils.buildOkCancelDialog(this@MainActivity,
+                    resources.getString(R.string.are_you_sure_you_want_to_logout),
+                    resources.getString(R.string.ok),
+                    resources.getString(R.string.cancel),
+                    object : OkCancelCallback {
+                        override fun onOkClick() {
+                            spUtil.clear()
+                            AccessToken.setCurrentAccessToken(null)
+                            Navigation.findNavController(this@MainActivity,R.id.main_nav_host_fragment).navigate(R.id.action_homeFragment_to_loginFragment)
+                        }
+
+                        override fun onCancelClick() {}
+                    })
+
+            }
             return true
         }
     }

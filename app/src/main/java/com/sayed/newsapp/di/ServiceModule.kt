@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 @Module
-public class ServiceModule {
+class ServiceModule {
 
     /**
      *DEFINE RETROFIT - API - Singleton
@@ -48,7 +48,7 @@ public class ServiceModule {
             var request = chain.request()
             if (!AppUtils.isNetworkAvailable(context)) {
                 val maxStale = 60 * 60 * 24 * 28 //4 weeks
-                request = request.newBuilder().addHeader("Cache-Control", "public, only-if-cached, max-stale=$maxStale")
+                request = request.newBuilder().addHeader("Cache-Control", "public, only-if-cached, max-stale=$maxStale") //for cache
                     .build()
             }
             chain.proceed(request)

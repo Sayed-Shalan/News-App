@@ -32,6 +32,7 @@ class App : Application(), HasActivityInjector {
         MultiDex.install(this)
     }
 
+    //To inject activities with traditional way
     override fun activityInjector(): AndroidInjector<Activity> {
         return this.dispatchingAndroidActivityInjector
     }

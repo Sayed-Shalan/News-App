@@ -1,13 +1,12 @@
 package com.sayed.newsapp.di
 
-import com.sayed.newsapp.ui.home.MainActivity
-import com.sayed.newsapp.ui.home.NewsDetailFragment
-import com.sayed.newsapp.ui.home.NewsFragment
+import com.sayed.newsapp.ui.home.*
+import com.sayed.newsapp.ui.login.LoginFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-public abstract class ActivityModule {
+abstract class ActivityModule {
 
     /**
      * Inject activities to be able to request dependencies
@@ -24,6 +23,18 @@ public abstract class ActivityModule {
 
         @ContributesAndroidInjector //For News Detail Fragment
         fun contributeDetailFragment() : NewsDetailFragment
+
+        @ContributesAndroidInjector //For Login Fragment
+        fun contributeLoginFragment() : LoginFragment
+
+        @ContributesAndroidInjector //For Home Fragment
+        fun contributeHomeFragment() : HomeFragment
+
+        @ContributesAndroidInjector //For Local news Fragment
+        fun contributeLocalFragment() : LocalFragment
+
+        @ContributesAndroidInjector //For Add news Fragment
+        fun contributeAddNewsFragment() : AddNewsFragment
     }
 
 }

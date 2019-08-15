@@ -3,18 +3,37 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_graph"
-            app:startDestination="@id/newsFragment">
-    <fragment android:id="@+id/newsFragment"
-              android:name="com.sayed.newsapp.ui.home.NewsFragment"
+            app:startDestination="@id/loginFragment">
+    <fragment android:id="@+id/loginFragment"
+              android:name="com.sayed.newsapp.ui.login.LoginFragment"
+              android:label="LoginFragment"
+              tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_loginFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:popUpToInclusive="true"
+        />
+    </fragment>
+    <fragment android:id="@+id/homeFragment"
+              android:name="com.sayed.newsapp.ui.home.HomeFragment"
               android:label="NewsFragment"
-              tools:layout="@layout/fragment_news">
+              tools:layout="@layout/fragment_home">
+
         <action android:id="@+id/action_newsFragment_to_detailFragment"
                 app:destination="@id/detailsFragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
                 app:launchSingleTop="false"
-                app:popUpToInclusive="false"
-                />
+                app:popUpToInclusive="false"/>
+
+        <action android:id="@+id/action_homeFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:popUpToInclusive="true"/>
+
+        <action android:id="@+id/action_homeFragment_to_addNewsFragment"
+                app:destination="@id/addNewsFragment"/>
+
+        <argument android:name="local"
+                  app:argType="boolean"
+                  android:defaultValue="false"/>
+
     </fragment>
     <fragment android:id="@+id/detailsFragment"
               android:name="com.sayed.newsapp.ui.home.NewsDetailFragment"
@@ -22,6 +41,19 @@
               tools:layout="@layout/fragment_news_detail">
         <argument android:name="newsArgs"
                   app:argType="com.sayed.newsapp.model.News"
+                  android:defaultValue="@null"
+                  app:nullable="true"/>
+    </fragment>
+    <fragment android:id="@+id/addNewsFragment"
+              android:name="com.sayed.newsapp.ui.home.AddNewsFragment"
+              android:label="fragment_add_news"
+              tools:layout="@layout/fragment_add_news">
+        <action android:id="@+id/action_addNewsFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/homeFragment"
+        />
+        <argument android:name="edit"
+                  app:argType="com.sayed.newsapp.room_db.EntityNews"
                   android:defaultValue="@null"
                   app:nullable="true"/>
     </fragment>

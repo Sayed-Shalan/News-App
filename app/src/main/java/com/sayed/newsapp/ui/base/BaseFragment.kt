@@ -12,10 +12,9 @@ import dagger.android.support.AndroidSupportInjection
 
 abstract class BaseFragment : Fragment() {
 
-    //data
-
+    //On create
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (this is Injectable) {
+        if (this is Injectable) { //decide injected or not
             AndroidSupportInjection.inject(this)
         }
 
@@ -23,6 +22,7 @@ abstract class BaseFragment : Fragment() {
     }
 
 
+    //show snackbar
     fun showSnackMsg(msg: String, view: View?) {
         if (view != null) {
             Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
@@ -32,6 +32,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
+    //Change swipe refresh color
     fun setSwipeRefreshColors(refreshLayout: SwipeRefreshLayout) {
         val c1 = resources.getColor(R.color.seamlab_theme)
         val c2 = resources.getColor(R.color.dark_gray_alpha)

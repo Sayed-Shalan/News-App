@@ -9,7 +9,7 @@ import com.sayed.newsapp.repositories.NewsRepository
 import com.sayed.newsapp.ui.base.BaseViewModel
 import javax.inject.Inject
 
-class NewsViewModel @Inject constructor(var newsRepository: NewsRepository) : BaseViewModel() {
+class NewsViewModel @Inject constructor(newsRepository: NewsRepository) : BaseViewModel() {
 
     //Init Life data
     private val pullNewsLD=MutableLiveData<String>()

@@ -84,8 +84,10 @@ dependencies {
             croutines_adapter: "0.9.2",
             coroutine        : "1.1.1",
             bottom_sheet     : "1.5.3",
-
-
+            room             : "1.0.0",
+            facebook_share   : "5.2.0",
+            facebook_login   : "5.1.1",
+            swipelayout      : "1.2.0@aar",
 
     ]
 
@@ -120,8 +122,11 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${versions.croutines_adapter}"
     implementation "com.flipboard:bottomsheet-core:${versions.bottom_sheet}"
     implementation "com.flipboard:bottomsheet-commons:${versions.bottom_sheet}"
-    implementation 'com.facebook.android:facebook-share:[5,6)'
-
+    implementation  "android.arch.persistence.room:runtime:${versions.room}"
+    kapt  "android.arch.persistence.room:compiler:${versions.room}"
+    implementation "com.facebook.android:facebook-share:${versions.facebook_share}"
+    implementation "com.facebook.android:facebook-login:${versions.facebook_login}"
+    implementation "com.daimajia.swipelayout:library:${versions.swipelayout}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

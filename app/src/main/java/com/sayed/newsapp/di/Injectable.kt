@@ -1,4 +1,3 @@
 package com.sayed.newsapp.di
 
-public interface Injectable {
-}
+interface Injectable //To decide if fragments need to request dependencies or not

@@ -56,6 +56,7 @@ abstract class BaseActivity : AppCompatActivity() {
         if (noInternetConnection && !snackbar.isShown) {
             snackbar.show()
         }
+
     }
 
     override fun onDestroy() {

@@ -7,6 +7,5 @@ class Const {
         val EMAIL: String="email"
         val FIRST_NAME: String="first_name"
         val LAST_NAME: String="last_name"
-        val RC_GOOGLE=100
     }
 }
