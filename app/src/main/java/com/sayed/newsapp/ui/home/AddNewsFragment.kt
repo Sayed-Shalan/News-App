@@ -1,11 +1,13 @@
 package com.sayed.newsapp.ui.home
 
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +57,11 @@ class AddNewsFragment : BaseFragment(),Injectable {
             setUpViewsForUpdate()
         }
         binding.btnAdd.setOnClickListener(onAddClickListener)
+
+        //Add LD Observers
+        viewModel.observeInsert().observe(this, Observer { Log.e("INSERT","Success") })
+        viewModel.observeUpdate().observe(this, Observer { Log.e("UPDATE","Success") })
+
     }
 
     //Set Views as in update mode

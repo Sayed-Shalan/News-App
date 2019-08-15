@@ -14,17 +14,19 @@ class LocalNewsViewModel @Inject constructor(localNewsRepository: LocalNewsRepos
     //dec data - lifeData
     private val resultNewsLD: LiveData<List<EntityNews>>
     private val pullNewsLD= MutableLiveData<Boolean>()
+    private var resultInsertLD : LiveData<Unit>
     private val pullInsert = MutableLiveData<EntityNews>()
+    private var resultDeletetLD : LiveData<Unit>
     private val pullDelete = MutableLiveData<Long>()
+    private var resultUpdateLD : LiveData<Unit>
     private val pullUpdate = MutableLiveData<EntityNews>()
 
 
     init {
-
         resultNewsLD= Transformations.switchMap(pullNewsLD) { localNewsRepository.getAllNews() } //Results as a list live-data
-        pullInsert.observeForever { localNewsRepository.insertNews(it!!) } //To Insert
-        pullDelete.observeForever { localNewsRepository.deleteNews(it!!) } //To Delete
-        pullUpdate.observeForever { localNewsRepository.updateNews(it!!)} //To update
+        resultInsertLD=Transformations.map(pullInsert,localNewsRepository::insertNews)//To Insert
+        resultDeletetLD=Transformations.map(pullDelete,localNewsRepository::deleteNews)//To delete item by id
+        resultUpdateLD=Transformations.map(pullUpdate,localNewsRepository::updateNews) //To update item
 
     }
 
@@ -49,6 +51,15 @@ class LocalNewsViewModel @Inject constructor(localNewsRepository: LocalNewsRepos
      */
      fun observeNews(): LiveData<List<EntityNews>> {
         return resultNewsLD
+    }
+    fun observeInsert() : LiveData<Unit>{
+        return resultInsertLD
+    }
+    fun observeDelete() : LiveData<Unit>{
+        return resultDeletetLD
+    }
+    fun observeUpdate() : LiveData<Unit>{
+        return resultUpdateLD
     }
 
 }

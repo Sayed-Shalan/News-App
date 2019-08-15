@@ -8,6 +8,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,6 +64,9 @@ class LocalFragment : BaseFragment(),Injectable {
         setAdapter()
         viewModel.observeNews().observe(viewLifecycleOwner, Observer { observeNews(it!!) })
         viewModel.pullNews() //get news
+
+        //add LD observers
+        viewModel.observeDelete().observe(this, Observer { Log.e("DELETE","Success") })
     }
 
     //set up adapter
